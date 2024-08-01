@@ -12,17 +12,32 @@ class Solution {
   public:
 
     string longestCommonPrefix(vector<string> arr) {
-        string ans=arr[0];
-        for(int i=1;i<arr.size();i++){
-            string temp="";
-            for(int j=0;j<min(arr[i].size(),ans.size());j++){
-                if(arr[i][j]==ans[j]) temp+=ans[j];
-                else break;
+         int mini=INT_MAX,i,n=arr.size();
+        string minst="",st;
+        for(i=0;i<arr.size();i++){
+           if(arr[i].length()<mini){
+                mini=arr[i].length();
+                minst=arr[i];
             }
-            ans=temp;
         }
-        if(ans.size()!=0) return ans;
-        else return "-1"; 
+     //  cout<<minst<<"hello"<<endl;
+       string ans="";
+       int f=0;
+        for(i=0;i<minst.length();i++){
+            f=0;
+            st=minst.substr(0,i+1);
+           
+            for(int i=0;i<n;i++){
+                if(arr[i].find(st)!=0)
+                {
+                    f=1;break;
+                }
+            }
+            if(f==0)
+            ans=st;}
+         
+            if(ans=="")return "-1";
+        return ans;
     }
 };
 
